@@ -1,0 +1,272 @@
+1)#stack using list
+stack=[]
+def push():
+    element=int(input("enter the element"))
+    stack.append(element)
+    print(stack)
+def pop_element():
+    if not stack:
+        print("stack is empty")
+    else:
+        e=stack.pop()
+        print("removed element:",e)
+        print(stack)
+while True:
+    print("select operation 1.push 2.pop 3.quit")
+    choice=int(input())
+    if choice==1:
+        push()
+    elif choice==2:
+        pop_element()
+    elif choice==3:
+        break
+    else:
+        print("enter the correct operation")
+
+output:
+select operation 1.push 2.pop 3.quit
+1
+enter the element50
+[50]
+select operation 1.push 2.pop 3.quit
+1
+enter the element500
+[50, 500]
+select operation 1.push 2.pop 3.quit
+2
+removed element: 500
+[50]
+select operation 1.push 2.pop 3.quit
+250
+enter the correct operation
+select operation 1.push 2.pop 3.quit
+1
+enter the element250
+[50, 250]
+select operation 1.push 2.pop 3.quit
+1
+enter the element600
+[50, 250, 600]
+select operation 1.push 2.pop 3.quit
+3
+
+
+2)#stack implementation using linkedkist
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next= None
+class stack:
+    def __init__(self):
+        self.head= None
+    def isempty(self):
+        if self.head==None:
+            return True
+        else:
+            return False
+    def push(self,data):
+        if self.head==None:
+            self.head=Node(data)
+        else:
+            newnode=Node(data)
+            newnode.next=self.head
+            self.head=newnode
+    def pop(self):
+        if self.isempty():
+            return None
+        else:
+            poppednode=self.head
+            self.head=self.head.next
+            poppednode.next=None
+            return poppednode.data
+    def peek(self):
+        if self.isempty():
+            return None
+        else:
+            return self.head.data
+    def display(self):
+        t=self.head
+        if self.isempty():
+            print("stack underflow")
+        else:
+            while(t !=None):
+                print(t.data,end=" ")
+                t=t.next
+                if(t !=None):
+                    print("---->",end=" ")
+            return
+if __name__ =="__main__":
+    s=stack()
+    s.push(1)
+    s.push(2)
+    s.push(3)
+    s.push(4)
+    s.display()
+    print(" ")
+    print("peek",s.peek())
+    s.pop()
+    s.pop()
+    s.display()
+    print(" ")
+    print("peek",s.peek())
+        
+        
+output:
+4 ----> 3 ----> 2 ----> 1  
+peek 4
+2 ----> 1  
+peek 2
+​
+3)from queue import LifoQueue
+s=LifoQueue(maxsize=3)
+print(s.qsize())
+s.put("a")
+s.put("b")
+s.put("c")
+print(s.full())
+print(s.qsize())
+print(s.get())
+print(s.get())
+print(s.get())
+print(s.empty())
+
+
+output:
+0
+True
+3
+c
+b
+a
+True
+
+
+4)#queue implementation using array or list
+queue=[]
+def enqueue():
+    element=input("enter element")
+    queue.append(element)
+    print(element," is added in q")
+def dequeue():
+    if not queue:
+        print("q is empty")
+    else:
+        e=queue.pop(0)
+        print("removed element",e)
+def display():
+    print(queue)
+while True:
+    print("select operation 1.enqueue 2.dequeue 3.show 4.quit")
+    choice=int(input())
+    if choice==1:
+        enqueue()
+    elif choice==2:
+        dequeue()
+    elif choice==3:
+        display()
+    elif choice==4:
+        break
+    else:
+        print("enter the correct operation")
+    
+ 
+
+output:
+select operation 1.enqueue 2.dequeue 3.show 4.quit
+1
+enter element250
+250  is added in q
+select operation 1.enqueue 2.dequeue 3.show 4.quit
+1
+enter element15
+15  is added in q
+select operation 1.enqueue 2.dequeue 3.show 4.quit
+2
+removed element 250
+select operation 1.enqueue 2.dequeue 3.show 4.quit
+3
+['15']
+select operation 1.enqueue 2.dequeue 3.show 4.quit
+4
+
+
+5)import queue
+L=queue.Queue(maxsize=5)
+L.put(10)
+L.put(20)
+print(type(L))
+print(L.get())
+print(L.get())
+
+
+output:
+<class 'queue.Queue'>
+10
+20
+
+6)# Queue in nodes
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+class Queue:
+    def __init__(self):
+        self.head=None
+        self.last=None
+    def enqueue(self,data):
+        if self.last is None:
+            self.head=Node(data)
+            self.last=self.head
+        else:
+            self.last.next= Node(data)
+            self.last=self.last.next
+
+    def dequeue(self):
+        if self.head is None:
+            return None
+        else:
+            to_return=self.head.data
+            self.head=self.head.next
+            return to_return
+a_queue =Queue()
+while True:
+    print("enqueue <value>")
+    print("dequeue")
+    print("quit")
+    #by using split,do will become a list,split works with string
+    do =input("what would you like to do ?").split()
+    operation =do[0].strip().lower()
+    if operation=="enqueue":
+        a_queue.enqueue(int(do[1]))
+    elif operation=="dequeue":
+        dequeued =a_queue.dequeue()
+        if dequeued is None:
+            print("queue is empty")
+        else:
+            print("dequeued element :",int(dequeued))
+
+    elif operation=='quit':
+        break
+
+output:
+-->>
+enqueue <value>
+dequeue
+quit
+what would you like to do ?enqueue 100
+enqueue <value>
+dequeue
+quit
+what would you like to do ?enqueue 500
+enqueue <value>
+dequeue
+quit
+what would you like to do ?dequeue
+dequeued element : 100
+enqueue <value>
+dequeue
+quit
+what would you like to do ?quit
+
+
+7)
